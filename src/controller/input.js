@@ -10,7 +10,7 @@ export default class Inputs {
 
   static async getBonusNumber() {
     const BONUS_NUMBER = await Console.readLineAsync(
-      "금액을 입력해 주세요. : "
+      "보너스 번호를 입력해 주세요. : "
     );
 
     return MONEY_INPUT;
