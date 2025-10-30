@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 
-class Controller {
+export default class Inputs {
   static async getWinningNumber() {
     const INPUT = await Console.readLineAsync("당첨 번호를 입력해 주세요. : ");
     const WINNING_NUMBER = INPUT.replaceAll(" ", "");
