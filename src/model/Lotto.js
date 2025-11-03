@@ -14,14 +14,14 @@ class Lotto {
     }
   }
 
-  #getNumbers() {
-    return this.#numbers;
-  }
-
   #sortNumbers(numbers) {
     const SORTED_TICKET = [...numbers].sort((a, b) => a - b);
 
     return SORTED_TICKET;
+  }
+
+  getNumbers() {
+    return [...this.#numbers];
   }
 }
 

@@ -3,7 +3,12 @@ import GAME_RULES from "../constants/game.js";
 import Lotto from "./Lotto.js";
 
 class LottoGenerator {
-  #generateTicket() {
+  #ticket;
+  constructor() {
+    this.#ticket = this.generateTicket();
+  }
+
+  static generateTicket() {
     const GET_TICKET = MissionUtils.Random.pickUniqueNumbersInRange(
       GAME_RULES.MIN_NUMBER,
       GAME_RULES.MAX_NUMBER,
@@ -13,10 +18,8 @@ class LottoGenerator {
     return new Lotto(GET_TICKET);
   }
 
-  #compareTicket(numArr) {
-    SORTED_TICKET.map((index) => {
-      return index === numbers;
-    });
+  getGenerated() {
+    return [...this.#ticket];
   }
 }
 
