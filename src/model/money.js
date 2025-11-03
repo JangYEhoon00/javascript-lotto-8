@@ -1,4 +1,4 @@
-import Inputs from "./controller/inputs";
+import Inputs from "./controller/inputs.js";
 import ERROR_MESSAGES from "../constants/errorMessages";
 
 export default class Money {
@@ -12,8 +12,8 @@ export default class Money {
     this.#count = count;
   }
 
-  #changeMoney(money) {
-    const CHANGE_NUM = Number(money);
+  #changeMoney() {
+    const CHANGE_NUM = Number(this.#money);
     if (isNaN(CHANGE_NUM)) {
       throw new Error(ERROR_MESSAGES.NOT_NUMBER);
     }
@@ -33,9 +33,8 @@ export default class Money {
     return this.#money / this.#GAME_PRICE;
   }
 
-  #restMoney(money, count) {
-    const GAME_MONEY = this.#GAME_PRICE * this.#count;
-
+  #restMoney() {
+    const GAME_MONEY = Inputs.getPurchaseMoney();
     const REST_MONEY = money - GAME_MONEY;
 
     return REST_MONEY;
