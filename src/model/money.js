@@ -1,10 +1,10 @@
 import Inputs from "./controller/inputs";
+import ERROR_MESSAGES from "../constants/errorMessages";
 
 export default class Money {
   #money;
   #count;
   #GAME_PRICE = 1000;
-  // 세터 지양의 이유
 
   constructor(money, count) {
     const CHANGED_MONEY = this.#changeMoney(money);
@@ -15,7 +15,7 @@ export default class Money {
   #changeMoney(money) {
     const CHANGE_NUM = Number(money);
     if (isNaN(CHANGE_NUM)) {
-      throw new Error("[ERROR] 금액이 숫자가 아닙니다.");
+      throw new Error(ERROR_MESSAGES.NOT_NUMBER);
     }
 
     return CHANGE_NUM;
@@ -23,16 +23,16 @@ export default class Money {
 
   #validateMoney(money) {
     if (money % 1000 !== 0) {
-      throw new Error("[ERROR] 로또의 금액 투입은 1,000원 단위 입니다.");
+      throw new Error(ERROR_MESSAGES.INVALID_UNIT);
     }
     if (money < 1000) {
-      throw new Error("[ERROR] 로또의 금액 투입은 1,000원 이상 입니다.");
+      throw new Error(ERROR_MESSAGES.BELOW_MINIMUM);
     }
     if (count <= 0) {
-      throw new Error("[ERROR] 시행횟수가 0보다 작을수 없습니다.");
+      throw new Error(ERROR_MESSAGES.INVALID_COUNT);
     }
     if (count * this.#GAME_PRICE > money) {
-      throw new Error("[ERROR] 구매 개수가 금액을 초과할 수 없습니다.");
+      throw new Error(ERROR_MESSAGES.EXCEED_LIMIT);
     }
 
     return money;
