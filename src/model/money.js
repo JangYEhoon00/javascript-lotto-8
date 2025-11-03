@@ -1,4 +1,4 @@
-import Inputs from "../controller/input";
+import Inputs from "./controller/inputs";
 
 export default class Money {
   #money;

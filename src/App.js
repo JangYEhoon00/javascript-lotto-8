@@ -1,5 +1,9 @@
+import Inputs from "./controller/inputs";
+
 class App {
-  async run() {}
+  async run() {
+    let a = Inputs.getWinningNumber();
+  }
 }
 
 export default App;
