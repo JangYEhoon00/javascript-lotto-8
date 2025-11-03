@@ -21,11 +21,11 @@ export default class Money {
     return CHANGE_NUM;
   }
 
-  #validateMoney(money) {
-    if (money % 1000 !== 0) throw new Error(ERROR_MESSAGES.INVALID_UNIT);
-    if (money < 1000) throw new Error(ERROR_MESSAGES.BELOW_MINIMUM);
-    if (count <= 0) throw new Error(ERROR_MESSAGES.INVALID_COUNT);
-    if (count * this.#GAME_PRICE > money)
+  #validateMoney() {
+    if (this.#money % 1000 !== 0) throw new Error(ERROR_MESSAGES.INVALID_UNIT);
+    if (this.#money < 1000) throw new Error(ERROR_MESSAGES.BELOW_MINIMUM);
+    if (this.#count <= 0) throw new Error(ERROR_MESSAGES.INVALID_COUNT);
+    if (this.#count * this.#GAME_PRICE > money)
       throw new Error(ERROR_MESSAGES.EXCEED_LIMIT);
   }
 
