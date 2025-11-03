@@ -13,6 +13,12 @@ class LottoGenerator {
 
     return new Lotto(SORTED_TICKET);
   }
+
+  #sortNumber(numArr) {
+    SORTED_TICKET.map((index) => {
+      return index === numbers;
+    });
+  }
 }
 
 export default LottoGenerator;

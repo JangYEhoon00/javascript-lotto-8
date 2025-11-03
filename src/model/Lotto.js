@@ -1,5 +1,4 @@
-import { Random } from "@woowacourse/mission-utils";
-import GAME_RULES from "../constants/game";
+import GAME_RULES from "../constants/game.js";
 
 class Lotto {
   #numbers;
@@ -10,22 +9,9 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== 6) {
+    if (numbers.length !== GAME_RULES.LOTTO_NUMBER_COUNT) {
       throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
     }
-  }
-
-  #compareTicket(numArr) {
-    SORTED_TICKET.map((index) => {
-      return index === numbers;
-    });
-  }
-
-  #changeToNumber(numbers) {
-    const CHECK_NUM = numbers.map((index) => {
-      return Number(index);
-    });
-    return CHECK_NUM;
   }
 }
 

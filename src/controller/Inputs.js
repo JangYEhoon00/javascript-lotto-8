@@ -6,7 +6,7 @@ export default class Inputs {
     const TRIMED_INPUT = INPUT.replaceAll(" ", "");
     const WINNING_NUMBER = TRIMED_INPUT.split(",");
 
-    return WINNING_NUMBER;
+    return changeToNumber(WINNING_NUMBER).sort((a, b) => a - b);
   }
 
   static async getBonusNumber() {
@@ -14,7 +14,7 @@ export default class Inputs {
       "보너스 번호를 입력해 주세요. : "
     );
 
-    return BONUS_NUMBER;
+    return Number(BONUS_NUMBER);
   }
 
   static async getMoney() {
@@ -37,5 +37,12 @@ export default class Inputs {
     );
 
     return PURCHASE_MONEY;
+  }
+
+  static #changeToNumber(numbers) {
+    const CHECK_NUM = numbers.map((index) => {
+      return Number(index);
+    });
+    return CHECK_NUM;
   }
 }
