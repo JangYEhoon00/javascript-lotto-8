@@ -13,10 +13,12 @@ export default class Money {
   }
 
   #modulo(money, count) {
-    if (money % 1000 != 0) {
+    const GAME_PRICE = 1000;
+
+    if (money % GAME_PRICE != 0) {
       throw new Error("[ERROR] 로또의 금액 투입은 1,000원 단위 입니다.");
     }
-    const GAME_MONEY = money / (count * 1000);
+    const GAME_MONEY = money / (count * GAME_PRICE);
 
     return GAME_MONEY;
   }
