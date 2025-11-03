@@ -30,4 +30,12 @@ export default class Inputs {
 
     return COUNT_INPUT;
   }
+
+  static async getPurchaseMoney() {
+    const PURCHASE_MONEY = await Console.readLineAsync(
+      "구매 금액을 입력해 주세요. : "
+    );
+
+    return PURCHASE_MONEY;
+  }
 }
