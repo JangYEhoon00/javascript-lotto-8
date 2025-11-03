@@ -22,29 +22,20 @@ export default class Money {
   }
 
   #validateMoney(money) {
-    if (money % 1000 !== 0) {
-      throw new Error(ERROR_MESSAGES.INVALID_UNIT);
-    }
-    if (money < 1000) {
-      throw new Error(ERROR_MESSAGES.BELOW_MINIMUM);
-    }
-    if (count <= 0) {
-      throw new Error(ERROR_MESSAGES.INVALID_COUNT);
-    }
-    if (count * this.#GAME_PRICE > money) {
+    if (money % 1000 !== 0) throw new Error(ERROR_MESSAGES.INVALID_UNIT);
+    if (money < 1000) throw new Error(ERROR_MESSAGES.BELOW_MINIMUM);
+    if (count <= 0) throw new Error(ERROR_MESSAGES.INVALID_COUNT);
+    if (count * this.#GAME_PRICE > money)
       throw new Error(ERROR_MESSAGES.EXCEED_LIMIT);
-    }
-
-    return money;
   }
 
-  #availableMoney(money, count) {
-    const GAME_MONEY = this.#money / count;
-
-    return GAME_MONEY;
+  #getMaxPurchaseCount() {
+    return this.#money / this.#GAME_PRICE;
   }
 
-  #restMoney(money, GAME_MONEY) {
+  #restMoney(money, count) {
+    const GAME_MONEY = this.#GAME_PRICE * this.#count;
+
     const REST_MONEY = money - GAME_MONEY;
 
     return REST_MONEY;
