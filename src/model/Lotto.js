@@ -1,5 +1,5 @@
 import { Random } from "@woowacourse/mission-utils";
-import GAME_RULES from "./constants/game";
+import GAME_RULES from "../constants/game";
 
 class Lotto {
   #numbers;
@@ -15,13 +15,28 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
   #generateTicket() {
-    MissionUtils.Random.pickUniqueNumbersInRange(
+    const GET_TICKET = MissionUtils.Random.pickUniqueNumbersInRange(
       GAME_RULES.MIN_NUMBER,
       GAME_RULES.MAX_NUMBER,
       GAME_RULES.LOTTO_NUMBER_COUNT
     );
+    const SORTED_TICKET = GET_TICKET.sort((a, b) => a - b);
+
+    return SORTED_TICKET;
+  }
+
+  #compareTicket(numArr) {
+    SORTED_TICKET.map((index) => {
+      return index === numbers;
+    });
+  }
+
+  #changeToNumber(numbers) {
+    const CHECK_NUM = numbers.map((index) => {
+      return Number(index);
+    });
+    return CHECK_NUM;
   }
 }
 

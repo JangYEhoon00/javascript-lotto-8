@@ -1,9 +1,7 @@
-import Inputs from "./controller/inputs";
+import { Console } from "@woowacourse/mission-utils";
 
 class App {
-  async run() {
-    let a = Inputs.getWinningNumber();
-  }
+  async run() {}
 }
 
 export default App;
