@@ -1,15 +1,10 @@
 import { Random } from "@woowacourse/mission-utils";
 import GAME_RULES from "../constants/game.js";
-import Lotto from "./Lotto.js";
+import Lotto from "../Lotto.js";
 
 class LottoGenerator {
-  #ticket;
-  constructor() {
-    this.#ticket = this.generateTicket();
-  }
-
   static generateTicket() {
-    const GET_TICKET = MissionUtils.Random.pickUniqueNumbersInRange(
+    const GET_TICKET = Random.pickUniqueNumbersInRange(
       GAME_RULES.MIN_NUMBER,
       GAME_RULES.MAX_NUMBER,
       GAME_RULES.LOTTO_NUMBER_COUNT
@@ -18,9 +13,14 @@ class LottoGenerator {
     return new Lotto(GET_TICKET);
   }
 
-  getGenerated() {
-    return [...this.#ticket];
+  static generateTickets(count) {
+    const tickets = [];
+    for (let i = 0; i < count; i += 1) {
+      tickets.push(this.generateTicket());
+    }
+    return tickets;
   }
+
 }
 
 export default LottoGenerator;

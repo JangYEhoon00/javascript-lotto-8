@@ -1,42 +1,35 @@
-import Inputs from "./controller/inputs.js";
-import ERROR_MESSAGES from "../constants/errorMessages";
+import ERROR_MESSAGES from "../constants/errorMessages.js";
 
 export default class Money {
-  #money;
-  #count;
-  #GAME_PRICE = 1000;
+  #amount;
+  static #GAME_PRICE = 1000;
 
-  constructor(money, count) {
-    const CHANGED_MONEY = this.#changeMoney(money);
-    this.#money = CHANGED_MONEY;
-    this.#count = count;
+  constructor(input) {
+    const parsed = Money.#parseAmount(input);
+    Money.#validateAmount(parsed);
+    this.#amount = parsed;
   }
 
-  #changeMoney() {
-    const CHANGE_NUM = Number(this.#money);
-    if (isNaN(CHANGE_NUM)) {
+  static #parseAmount(input) {
+    const num = Number(input);
+    if (Number.isNaN(num)) {
       throw new Error(ERROR_MESSAGES.NOT_NUMBER);
     }
-
-    return CHANGE_NUM;
+    return num;
   }
 
-  #validateMoney() {
-    if (this.#money % 1000 !== 0) throw new Error(ERROR_MESSAGES.INVALID_UNIT);
-    if (this.#money < 1000) throw new Error(ERROR_MESSAGES.BELOW_MINIMUM);
-    if (this.#count <= 0) throw new Error(ERROR_MESSAGES.INVALID_COUNT);
-    if (this.#count * this.#GAME_PRICE > money)
-      throw new Error(ERROR_MESSAGES.EXCEED_LIMIT);
+  static #validateAmount(amount) {
+    if (amount < Money.#GAME_PRICE)
+       throw new Error(ERROR_MESSAGES.BELOW_MINIMUM);
+    if (amount % Money.#GAME_PRICE !== 0)
+      throw new Error(ERROR_MESSAGES.INVALID_UNIT);
   }
 
-  #getMaxPurchaseCount() {
-    return this.#money / this.#GAME_PRICE;
+  getAmount() {
+    return this.#amount;
   }
 
-  #restMoney() {
-    const GAME_MONEY = Inputs.getPurchaseMoney();
-    const REST_MONEY = money - GAME_MONEY;
-
-    return REST_MONEY;
+  getPurchaseCount() {
+    return this.#amount / Money.#GAME_PRICE;
   }
 }

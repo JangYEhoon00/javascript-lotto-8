@@ -6,7 +6,7 @@ export default class Inputs {
     const TRIMED_INPUT = INPUT.replaceAll(" ", "");
     const WINNING_NUMBER = TRIMED_INPUT.split(",");
 
-    return changeToNumber(WINNING_NUMBER).sort((a, b) => a - b);
+    return this.#changeToNumber(WINNING_NUMBER).sort((a, b) => a - b);
   }
 
   static async getBonusNumber() {
