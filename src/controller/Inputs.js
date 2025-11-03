@@ -24,7 +24,9 @@ export default class Inputs {
   }
 
   static async getGameCount() {
-    const COUNT_INPUT = await Console.readLineAsync("금액을 입력해 주세요. : ");
+    const COUNT_INPUT = await Console.readLineAsync(
+      "시행횟수를 입력해 주세요. : "
+    );
 
     return COUNT_INPUT;
   }
