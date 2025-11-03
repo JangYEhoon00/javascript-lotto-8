@@ -9,12 +9,11 @@ class LottoGenerator {
       GAME_RULES.MAX_NUMBER,
       GAME_RULES.LOTTO_NUMBER_COUNT
     );
-    const SORTED_TICKET = GET_TICKET.sort((a, b) => a - b);
 
-    return new Lotto(SORTED_TICKET);
+    return new Lotto(GET_TICKET);
   }
 
-  #sortNumber(numArr) {
+  #compareTicket(numArr) {
     SORTED_TICKET.map((index) => {
       return index === numbers;
     });
