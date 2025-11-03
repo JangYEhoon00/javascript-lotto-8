@@ -1,3 +1,6 @@
+import { Random } from "@woowacourse/mission-utils";
+import GAME_RULES from "./constants/game";
+
 class Lotto {
   #numbers;
 
@@ -13,6 +16,13 @@ class Lotto {
   }
 
   // TODO: 추가 기능 구현
+  #generateTicket() {
+    MissionUtils.Random.pickUniqueNumbersInRange(
+      GAME_RULES.MIN_NUMBER,
+      GAME_RULES.MAX_NUMBER,
+      GAME_RULES.LOTTO_NUMBER_COUNT
+    );
+  }
 }
 
 export default Lotto;
