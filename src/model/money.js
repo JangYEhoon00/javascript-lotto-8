@@ -4,9 +4,6 @@ export default class Money {
   #money;
   #count;
   #GAME_PRICE = 1000;
-  // 입력받은 금액의 유효성 검사
-  // 나머지의 몫이 그럼 전부 로또로
-  // 로또는 사용자가 입력한 수 만큼 구매
   // 세터 지양의 이유
 
   constructor(money, count) {
@@ -31,11 +28,18 @@ export default class Money {
     if (money < 1000) {
       throw new Error("[ERROR] 로또의 금액 투입은 1,000원 이상 입니다.");
     }
+    if (count <= 0) {
+      throw new Error("[ERROR] 시행횟수가 0보다 작을수 없습니다.");
+    }
+    if (count * this.#GAME_PRICE > money) {
+      throw new Error("[ERROR] 구매 개수가 금액을 초과할 수 없습니다.");
+    }
+
     return money;
   }
 
-  #modulo(money, count) {
-    const GAME_MONEY = money / (count * GAME_PRICE);
+  #availableMoney(money, count) {
+    const GAME_MONEY = this.#money / count;
 
     return GAME_MONEY;
   }
